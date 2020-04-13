@@ -1,0 +1,29 @@
+@import '../../utils/variables.scss';
+
+.order {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	text-align: center;
+	.successMessage {
+		columns: $color-green;
+	}
+	.icon {
+		margin-bottom: 1rem;
+		color: $color-green;
+		svg {
+			font-size: 2.5rem;
+		}
+	}
+	ul {
+		margin-top: 1rem;
+		display: inline-block;
+		li:not(last-child) {
+			margin-bottom: 1rem;
+		}
+	}
+	.orderId {
+		color: $color-secondary-orange-darker;
+	}
+}

@@ -1,0 +1,23 @@
+@import '../../utils/variables.scss';
+
+.productLink {
+	display: block;
+	text-decoration: none;
+}
+
+.product {
+	border: 1px solid #000;
+	margin-bottom: 2rem;
+	padding: 15px;
+}
+
+.productImage {
+	margin-right: 1rem;
+	img {
+		width: 100%;
+	}
+}
+
+.productName {
+	color: $color-grey;
+}

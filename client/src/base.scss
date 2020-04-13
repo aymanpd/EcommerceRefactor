@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya:700&display=swap');
+
+@import './mediaQueryManager.scss';
+@import './utils/variables.scss';
+
+svg {
+	vertical-align: middle;
+	font-size: inherit;
+}
+
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	@include respond(md) {
+		// width < 1200?
+		font-size: 70%; //1 rem = 9px, 9/16 = 50%
+	}
+
+	@include respond(sm) {
+		// width < 900?
+		font-size: 60%; //1 rem = 8px, 8/16 = 50%
+	}
+
+	// @include respond(xl) {
+	// 	font-size: 75%; //1rem = 12, 12/16
+	// }
+}
+
+body {
+	box-sizing: border-box;
+	font-size: 1rem;
+	font-family: 'Latto', monospace;
+	font-weight: 400;
+	color: $color-normal-text;
+}
+
+input,
+textarea {
+	outline: none;
+	box-shadow: none;
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	/* display: none; <- Crashes Chrome on hover */
+	-webkit-appearance: none;
+	margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type='number'] {
+	-moz-appearance: textfield; /* Firefox */
+}
+
+::selection {
+	background-color: #000;
+	color: #fff;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+button {
+	cursor: pointer;
+}

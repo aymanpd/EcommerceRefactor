@@ -1,0 +1,21 @@
+@import '../../utils/variables.scss';
+
+.categoryLink {
+	color: $color-grey;
+	text-decoration: none;
+	font-size: 1.1rem;
+	&:hover {
+		text-decoration: underline;
+		color: $color-secondary-orange-lighter;
+	}
+}
+
+.sectionTitle {
+	span {
+		font-size: 1.2rem;
+	}
+}
+
+.label {
+	color: $color-grey;
+}

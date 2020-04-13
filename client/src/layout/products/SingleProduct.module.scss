@@ -1,0 +1,156 @@
+@import '../../utils/variables.scss';
+
+nav.breadcrumb {
+	font-size: 0.9rem;
+	margin: 1rem 0;
+	a {
+		text-decoration: none;
+		font-size: 0.9rem;
+		color: $color-normal-text;
+		opacity: 0.8;
+		&:hover {
+			opacity: 1;
+		}
+	}
+	li {
+		color: $color-normal-text;
+	}
+}
+.activeImage {
+	width: 80%;
+	float: left;
+	margin-right: 1%;
+}
+
+.images {
+	width: 19%;
+	float: left;
+}
+
+.imageContainer {
+	padding: 2px;
+	margin-bottom: 0.3rem;
+	img {
+		width: 100%;
+		display: block;
+	}
+}
+
+.selectedImage {
+	border: 2px solid #000;
+}
+
+.productName {
+	text-align: center;
+}
+.onSalePriceBox {
+	text-align: center;
+	h5 {
+		margin: 0;
+		margin-bottom: 0.5rem;
+		color: $color-normal-text;
+		opacity: 0.5;
+		text-decoration: line-through;
+	}
+	h4 {
+		margin: 0;
+		color: $color-secondary-orange-lighter;
+	}
+}
+.price {
+	color: $color-secondary-orange-lighter;
+	text-align: center;
+	margin: 0;
+	margin-bottom: 1rem;
+}
+
+.propertyBlock {
+	margin-bottom: 2rem;
+}
+
+.label {
+	display: block;
+	margin-bottom: 0.5rem;
+}
+.colorSelector {
+	cursor: pointer;
+	display: inline-block;
+	border: 1px solid $color-light-grey;
+	padding: 2px;
+	opacity: 0.9;
+	&:not(:last-child) {
+		margin-right: 5px;
+	}
+
+	div {
+		width: 18px;
+		height: 18px;
+	}
+}
+
+.activeColor {
+	border-color: #000;
+}
+
+.quantityControl {
+	border: 1px solid $color-light-grey;
+	cursor: pointer;
+	padding: 8px 10px;
+	background-color: transparent;
+	outline: none;
+	&:hover {
+		border-color: #000;
+	}
+}
+
+.quantityInput {
+	border: 1px solid $color-light-grey;
+	padding: 5px 10px;
+	width: 2rem;
+	border-right: 0;
+	border-left: 0;
+	text-align: center;
+	outline: none;
+	/* Chrome, Safari, Edge, Opera */
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	&[type='number'] {
+		-moz-appearance: textfield;
+	}
+}
+
+.addToCart {
+	margin: 2.5rem 0;
+	display: block;
+	width: 80%;
+	background-color: #000;
+	padding: 15px 0;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 500;
+	border: none;
+	-webkit-transform: skew(-15deg);
+	transform: skew(-15deg);
+	cursor: pointer;
+}
+
+.description {
+	color: $color-grey;
+	font-size: 1.1rem;
+	line-height: 25px;
+	margin-bottom: 2rem;
+}
+
+.specs {
+	margin: 0;
+	padding: 0;
+	color: $color-normal-text;
+	li:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+}

@@ -1,0 +1,14 @@
+@import '../../utils/variables.scss';
+
+.goBack {
+	border: none;
+	background-color: transparent;
+	color: $color-normal-text;
+	cursor: pointer;
+	&:hover {
+		color: $color-grey;
+	}
+	svg {
+		font-size: 1.3rem;
+	}
+}

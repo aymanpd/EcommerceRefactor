@@ -1,0 +1,27 @@
+@import '../mediaQueryManager.scss';
+
+// COLORS
+
+$color-normal-text: #4f4f4f;
+$color-secondary-orange: #f0654f;
+$color-secondary-orange-darker: #f51010;
+$color-secondary-orange-lighter: #fe5269;
+
+$color-grey: #7b7b7b;
+$color-light-grey: #ddd;
+$color-lighter-grey: #f7f7f7;
+$color-green: #4cb050;
+$color-red: #ff5353;
+$color-yellow: #ff9800;
+/*****************************/
+
+//fonts
+
+$font-secondary: 'Alegreya', serif;
+
+:export {
+	colorNormalText: $color-normal-text;
+	colorGrey: $color-grey;
+}
+// FONT
+$default-font-size: 1.6rem;

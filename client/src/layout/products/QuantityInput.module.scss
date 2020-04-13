@@ -1,0 +1,33 @@
+@import '../../utils/variables.scss';
+
+.quantityControl {
+	border: 1px solid $color-light-grey;
+	cursor: pointer;
+	padding: 8px 10px;
+	background-color: transparent;
+	outline: none;
+	&:hover {
+		border-color: #000;
+	}
+}
+
+.quantityInput {
+	border: 1px solid $color-light-grey;
+	padding: 5px 10px;
+	max-width: 48px;
+	border-right: 0;
+	border-left: 0;
+	text-align: center;
+	outline: none;
+	/* Chrome, Safari, Edge, Opera */
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	&[type='number'] {
+		-moz-appearance: textfield;
+	}
+}

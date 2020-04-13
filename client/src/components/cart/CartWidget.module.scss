@@ -1,0 +1,101 @@
+@import '../../utils/variables.scss';
+
+.widget {
+	background-color: $color-lighter-grey;
+	border: 1px solid $color-light-grey;
+	padding: 15px;
+
+	.item {
+		border-bottom: 2px solid $color-grey;
+		padding-bottom: 0.5rem;
+		margin-bottom: 0.5rem;
+		.qty {
+			position: absolute;
+			right: 0px;
+			top: 0rem;
+			background-color: #808080;
+			color: #fff;
+			width: 1.5rem;
+			height: 1.5rem;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 1.5rem;
+			font-size: 0.9rem;
+		}
+
+		.title {
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+		}
+		.image {
+			width: 100%;
+		}
+		.props {
+			overflow: hidden;
+			margin-bottom: 1rem;
+			.price {
+				float: right;
+				color: $color-secondary-orange-lighter;
+				font-family: $font-secondary;
+				font-size: 1rem;
+
+				svg {
+					font: inherit;
+					vertical-align: middle;
+					margin-right: -4px;
+				}
+				span:nth-child(2) {
+					color: #999;
+					text-decoration: line-through;
+					display: block;
+					font-size: 0.9rem;
+					text-align: right;
+				}
+			}
+		}
+	}
+	.removeIcon {
+		display: block;
+		text-align: right;
+		svg {
+			font-size: 1rem;
+			color: #2d2d2d;
+			opacity: 0.8;
+			cursor: pointer;
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+	.cartFooter {
+		margin-top: 1rem;
+		overflow: hidden;
+		a {
+			color: #4f4f4f;
+			text-decoration: none;
+			opacity: 0.8;
+			&:hover {
+				opacity: 1;
+			}
+
+			svg {
+				font-size: 1.4rem;
+				margin-left: -8px;
+				vertical-align: middle;
+			}
+		}
+		.totalPrice {
+			float: right;
+			color: $color-secondary-orange-lighter;
+			font-family: $font-secondary;
+			font-size: 1.2rem;
+			svg {
+				font-size: inherit;
+				vertical-align: middle;
+				margin-right: -5px;
+			}
+		}
+	}
+}

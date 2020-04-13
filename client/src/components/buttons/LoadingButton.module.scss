@@ -1,0 +1,41 @@
+@import '../../utils/variables.scss';
+
+.button {
+	background-color: #000;
+	color: #fff;
+	font-size: 0.7rem;
+	position: relative;
+	padding: 10px 20px;
+	transition: 0.3s all ease-in-out;
+	font-family: $font-secondary;
+	&.disabled {
+		opacity: 0.8;
+		color: #fff;
+	}
+	&.iconsVisible {
+		padding-right: 40px;
+	}
+	&:hover {
+		background: #000;
+	}
+	&.success {
+		background: $color-green;
+	}
+	.checkIcon {
+		position: absolute;
+		right: 10px;
+		visibility: hidden;
+		&.active {
+			visibility: visible;
+		}
+	}
+	.progress {
+		position: absolute;
+		right: 10px;
+		color: $color-secondary-orange-lighter;
+		visibility: hidden;
+		&.active {
+			visibility: visible;
+		}
+	}
+}
