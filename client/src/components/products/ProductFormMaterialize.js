@@ -8,6 +8,7 @@ import fields from '../utils/fields';
 import styles from './productForm.module.scss';
 import Alert from '@material-ui/lab/Alert';
 import CSS_COLORS from '../utils/CSS_COLORS';
+import axiosInstance from '../../utils/axiosInstance';
 
 const productSchema = Yup.object().shape({
 	name: Yup.string().required('is required'),
@@ -17,9 +18,9 @@ const productSchema = Yup.object().shape({
 		Yup.object().shape({
 			colorName: Yup.string().required('is required'),
 			primaryImage: Yup.object().required(),
-			secondaryImage: Yup.object().required()
+			secondaryImage: Yup.object().required(),
 		})
-	)
+	),
 });
 
 //name, type, placeholder, default value, options([ [value, label] ]), required
@@ -29,7 +30,7 @@ const basics = [
 		type: 'text',
 		text: 'Name',
 		defaultValue: '',
-		required: true
+		required: true,
 	},
 	{ name: 'description', type: 'text', text: 'Description', defaultValue: '' },
 	{
@@ -37,7 +38,7 @@ const basics = [
 		type: 'number',
 		text: 'Price',
 		defaultValue: '',
-		required: true
+		required: true,
 	},
 	{ name: 'featured', type: 'check', text: 'Featured', defaultValue: false },
 	{
@@ -47,21 +48,21 @@ const basics = [
 		defaultValue: 'instock',
 		options: [
 			{ value: 'instock', text: 'In stock' },
-			{ value: 'outofstock', text: 'Out of stock' }
-		]
+			{ value: 'outofstock', text: 'Out of stock' },
+		],
 	},
 	{
 		name: 'onSaleFrom',
 		type: 'date',
 		text: 'sale Starts ',
-		defaultValue: null
+		defaultValue: null,
 	},
 	{ name: 'onSaleTo', type: 'date', text: 'Sale ends', defaultValue: null },
 	{
 		name: 'salePrice',
 		type: 'number',
 		text: 'Price after sale',
-		defaultValue: ''
+		defaultValue: '',
 	},
 
 	{
@@ -69,8 +70,8 @@ const basics = [
 		type: 'asyncSelect',
 		text: 'Category',
 		defaultValue: '',
-		required: true
-	}
+		required: true,
+	},
 	// ['similarProducts', 'asyncSelect', 'Status', ""]
 ];
 
@@ -86,29 +87,29 @@ const defaultInitialValues = {
 			sizes: { xs: false, s: false, m: false, l: false, xl: false },
 			primaryImage: '',
 			secondaryImage: '',
-			gallery: []
-		}
+			gallery: [],
+		},
 	],
-	specifications: ['']
+	specifications: [''],
 };
 
 const ProductFormMaterialize = ({
 	imagesBaseUrl,
 	initialValues = {},
 	onSubmit,
-	actionName
+	actionName,
 }) => {
 	//get categories
 	const [categoriesResponse, setCategories] = useState({
 		loading: false,
-		categories: []
+		categories: [],
 	});
 	useEffect(() => {
 		(async () => {
 			setCategories({ loading: true, categories: [] });
-			const categories = await fetch(
-				'https://safe-chamber-92499.herokuapp.com/category'
-			).then(res => res.json());
+			const categories = await axiosInstance
+				.get('/category')
+				.then((res) => res.data.categories);
 			setCategories({ categories, loading: false });
 		})();
 	}, []);
@@ -122,7 +123,7 @@ const ProductFormMaterialize = ({
 				<Form>
 					<Box component='section' className={styles.section}>
 						<h3 className={styles.sectionTitle}>Basics</h3>
-						{basics.map(field => {
+						{basics.map((field) => {
 							let extras;
 							if (field.name === 'category') extras = categoriesResponse;
 							return fields[field.type] ? (
@@ -143,10 +144,11 @@ const ProductFormMaterialize = ({
 									// Color block
 									<Box className={styles.colorBlock} key={index}>
 										<button
-											className={`${styles.deleteColor} ${form.values.colors
-												.length === 1 && styles.disabled}`}
+											className={`${styles.deleteColor} ${
+												form.values.colors.length === 1 && styles.disabled
+											}`}
 											disabled={form.values.colors.length === 1}
-											onClick={e => {
+											onClick={(e) => {
 												e.preventDefault();
 												remove(index);
 											}}
@@ -160,18 +162,18 @@ const ProductFormMaterialize = ({
 													name: `colors[${index}].colorName`,
 													text: `#${index + 1} Color name`,
 													options: CSS_COLORS,
-													required: true
+													required: true,
 												},
 												form.errors
 											)}
 										</Box>
 
 										{/* Sizes */}
-										{['xs', 's', 'm', 'l', 'xl'].map(size =>
+										{['xs', 's', 'm', 'l', 'xl'].map((size) =>
 											fields.check(
 												{
 													name: `colors[${index}].sizes.${size}`,
-													text: size.toUpperCase()
+													text: size.toUpperCase(),
 												},
 												form.errors
 											)
@@ -180,18 +182,18 @@ const ProductFormMaterialize = ({
 										{[
 											{
 												name: `colors[${index}].primaryImage`,
-												text: 'Primary image'
+												text: 'Primary image',
 											},
 											{
 												name: `colors[${index}].secondaryImage`,
-												text: 'Secondary image'
+												text: 'Secondary image',
 											},
 											{
 												name: `colors[${index}].gallery`,
 												text: 'Gallery',
-												multiple: true
-											}
-										].map(input => fields.file(input, form.errors))}
+												multiple: true,
+											},
+										].map((input) => fields.file(input, form.errors))}
 										{/* Images Preview */}
 										<Box display='flex' className={styles.imagePreview}>
 											{/* primary and secondary preview */}
@@ -228,7 +230,7 @@ const ProductFormMaterialize = ({
 											<Alert
 												style={{
 													maxWidth: '450px',
-													marginBottom: '.5rem'
+													marginBottom: '.5rem',
 												}}
 												severity='info'
 											>
@@ -273,7 +275,7 @@ const ProductFormMaterialize = ({
 									</Box>
 								))}
 								<IconButton
-									onClick={e => {
+									onClick={(e) => {
 										e.preventDefault();
 										push(defaultInitialValues.colors[0]);
 									}}
@@ -294,14 +296,14 @@ const ProductFormMaterialize = ({
 										{fields.text(
 											{
 												name: `specifications[${index}]`,
-												text: `Spec #${index + 1}`
+												text: `Spec #${index + 1}`,
 											},
 											form.errors
 										)}
 									</Box>
 								))}
 								<IconButton
-									onClick={e => {
+									onClick={(e) => {
 										e.preventDefault();
 										push('');
 									}}
