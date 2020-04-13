@@ -4,6 +4,7 @@ import styles from './SingleProductGrid.module.scss';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import moment from 'moment';
+import ImageWithLoading from '../ImageWithLoading';
 
 const SingleProductGrid = ({ product }) => {
 	const [activeColor, setActiveColor] = useState(0);
@@ -16,12 +17,12 @@ const SingleProductGrid = ({ product }) => {
 							product.onSale ? styles.onSale : ''
 						}`}
 					>
-						<img
+						<ImageWithLoading
 							className={styles.primaryImage}
 							alt='primary'
 							src={`${product.imagesBaseUrl}${product.colors[activeColor].primaryImage}.jpeg`}
 						/>
-						<img
+						<ImageWithLoading
 							className={styles.secondaryImage}
 							alt='secondary'
 							src={`${product.imagesBaseUrl}${product.colors[activeColor].secondaryImage}.jpeg`}
