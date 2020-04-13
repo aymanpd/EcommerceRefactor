@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CircularProgress, Box } from '@material-ui/core';
 
 const ImageWithLoading = (props) => {
 	const [loading, setLoading] = useState(true);
+	const isInitialMount = useRef(true);
+
+	useEffect(() => {
+		if (isInitialMount.current) {
+			isInitialMount.current = false;
+		}
+		setLoading(true);
+	}, [props.src]);
 
 	return (
 		<>
