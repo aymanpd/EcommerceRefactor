@@ -22,11 +22,13 @@ const SingleProductGrid = ({ product }) => {
 							alt='primary'
 							src={`${product.imagesBaseUrl}${product.colors[activeColor].primaryImage}.jpeg`}
 						/>
-						<ImageWithLoading
-							className={styles.secondaryImage}
-							alt='secondary'
-							src={`${product.imagesBaseUrl}${product.colors[activeColor].secondaryImage}.jpeg`}
-						/>
+						{product.colors[activeColor].secondaryImage && (
+							<ImageWithLoading
+								className={styles.secondaryImage}
+								alt='secondary'
+								src={`${product.imagesBaseUrl}${product.colors[activeColor].secondaryImage}.jpeg`}
+							/>
+						)}
 					</Box>
 					<Box>
 						<h4 className={styles.name}>{product.name}</h4>
