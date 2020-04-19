@@ -19,12 +19,12 @@ const sendErrorDevelopment = (err, res) => {
 };
 
 const errorHandler = (err, req, res, next) => {
-	const sendError =
-		process.env.NODE_ENV === 'DEVELOPMENT'
-			? sendErrorDevelopment
-			: sendErrorProduction;
+	const sendError = sendErrorDevelopment;
+	// process.env.NODE_ENV === 'DEVELOPMENT'
+	// 	? sendErrorDevelopment
+	// 	: sendErrorProduction;
 	if (err.name == 'ValidationError') {
-		const errors = Object.values(err.errors).map(error =>
+		const errors = Object.values(err.errors).map((error) =>
 			error.name == 'CastError' ? `Invalid ${error.path} ID` : error.message
 		);
 		const errorMessage = errors.join('. ', errors);

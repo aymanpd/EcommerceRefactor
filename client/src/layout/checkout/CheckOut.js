@@ -6,7 +6,7 @@ import {
 	Box,
 	RadioGroup,
 	Radio,
-	FormControlLabel
+	FormControlLabel,
 } from '@material-ui/core';
 import { CustomTextField } from '../../components/utils/styledFields';
 import CartWidget from '../../components/cart/CartWidget';
@@ -23,22 +23,22 @@ const CheckOut = ({ items, history, clearCart }) => {
 	const onSubmit = (values, formControls) => {
 		const lineItems = Object.values(items).map(({ id, product, props }) => ({
 			...props,
-			productId: product._id
+			productId: product._id,
 		}));
 		if (paymentMethod === 'cod') {
 			axiosInstance
 				.post('order/place-order', {
 					lineItems,
 					shippingAddress: values,
-					orderNote
+					orderNote,
 				})
-				.then(res => {
+				.then((res) => {
 					formControls.setStatus('succeeded');
 					formControls.setSubmitting(false);
 					clearCart();
 					history.push(`/order-placed/${res.data._id}`);
 				})
-				.catch(e => {
+				.catch((e) => {
 					formControls.setFieldError('backend', e.response.data);
 					formControls.setStatus('failed');
 					formControls.setSubmitting(false);
@@ -49,14 +49,14 @@ const CheckOut = ({ items, history, clearCart }) => {
 					lineItems,
 					orderNote,
 					email: values.email,
-					phone: values.phone
+					phone: values.phone,
 				})
-				.then(res => {
+				.then((res) => {
 					const stripe = window.Stripe(
 						'pk_test_liP39EnnPqrLlOZh1MFg488D00Q1RuLIzl'
 					);
 					stripe.redirectToCheckout({
-						sessionId: res.data.id
+						sessionId: res.data.id,
 					});
 				});
 		}
@@ -104,7 +104,7 @@ const CheckOut = ({ items, history, clearCart }) => {
 							multiline
 							rowsMax='4'
 							value={orderNote}
-							onChange={e => setOrderNote(e.target.value)}
+							onChange={(e) => setOrderNote(e.target.value)}
 							variant='outlined'
 							fullWidth
 							style={{ marginTop: '1rem' }}
