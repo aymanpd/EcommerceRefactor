@@ -6,10 +6,10 @@ import ProductFormMaterialize from '../../components/products/ProductFormMateria
 import axiosInstance from '../../utils/axiosInstance';
 import Alert from '@material-ui/lab/Alert';
 
-const onSubmit = async (values, formControls) => {
-	const productColors = values.colors.map(color => {
+const onSubmit = (values, formControls) => {
+	const productColors = values.colors.map((color) => {
 		const sizesArray = Object.keys(color.sizes).filter(
-			size => color.sizes[size]
+			(size) => color.sizes[size]
 		);
 		return { ...color, sizes: sizesArray };
 	});
@@ -17,16 +17,16 @@ const onSubmit = async (values, formControls) => {
 	const productValues = {
 		...values,
 		category: values.category.value ? values.category.value : values.category,
-		colors: productColors
+		colors: productColors,
 	};
 
 	axiosInstance
 		.patch(`/products/${values._id}/update`, productValues)
-		.then(res => {
+		.then((res) => {
 			formControls.setStatus('succeeded');
 			formControls.setSubmitting(false);
 		})
-		.catch(e => {
+		.catch((e) => {
 			formControls.setFieldError('backend', e.response && e.response.data);
 			formControls.setStatus('failed');
 			formControls.setSubmitting(false);
@@ -34,7 +34,7 @@ const onSubmit = async (values, formControls) => {
 };
 
 const convertData = ({ product }) => {
-	const colors = product.colors.map(color => ({
+	const colors = product.colors.map((color) => ({
 		...color,
 		sizes: ['xs', 's', 'm', 'l', 'xl'].reduce(
 			(prev, curr) => ({ ...prev, [curr]: color.sizes.includes(curr) }),
@@ -42,19 +42,19 @@ const convertData = ({ product }) => {
 		),
 		primaryImage: { url: color.primaryImage },
 		secondaryImage: { url: color.secondaryImage },
-		gallery: color.gallery ? color.gallery.map(url => ({ url })) : []
+		gallery: color.gallery ? color.gallery.map((url) => ({ url })) : [],
 	}));
 	return {
 		...product,
 		category: { name: product.category.name, value: product.category._id },
-		colors
+		colors,
 	};
 };
 const UpdateProduct = ({ match, history }) => {
 	const requestConfig = useMemo(
 		() => ({
 			url: `/products/single/${match.params.productId}`,
-			method: 'get'
+			method: 'get',
 		}),
 		[match.params.productId]
 	);
