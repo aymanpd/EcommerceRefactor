@@ -31,7 +31,7 @@
 		"react-select-search": "^0.9.6",
 		"stripe": "^7.10.0",
 		"uuid": "^7.0.2",
-		"validator": "^11.1.0"
+		"validator": "^13.7.0"
 	},
 	"devDependencies": {
 		"nodemon": "^1.19.1"
